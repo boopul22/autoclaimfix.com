@@ -11,7 +11,7 @@ const PrivacyPolicyPage: React.FC = () => {
           <section>
             <h2 className="text-xl font-semibold text-slate-900 mb-3">1. INTRODUCTION AND SCOPE</h2>
             <p>
-              ukclaims.org (“Company,” “we,” “our,” or “us”) is a marketing and technology platform. This Privacy Policy governs the personal information we collect when you: (a) visit our website (the “Site”); (b) utilize our claim-facilitation tools; or (c) contact us via our dedicated telephone lines or request to be contacted by our third-party marketing partners, including but not limited to, C3Claims, law firms, intake specialists, and legal advocates (collectively, “Marketing Partners”).
+              ukclaims.org (“Company,” “we,” “our,” or “us”) is a marketing and technology platform. This Privacy Policy governs the personal information we collect when you: (a) visit our website (the “Site”); (b) utilize our claim-facilitation tools; or (c) contact us via our dedicated telephone lines or request to be contacted by our third-party marketing partners, including but not limited to, C3Claims, Claim3000, Mis-Sold Finance, law firms, intake specialists, and legal advocates (collectively, “Marketing Partners”).
             </p>
             <p className="font-bold mt-2">IF YOU DO NOT AGREE TO THIS PRIVACY POLICY IN ITS ENTIRETY, YOU MAY NOT ACCESS THE SITE OR UTILIZE OUR SERVICES.</p>
           </section>
