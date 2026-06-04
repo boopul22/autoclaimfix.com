@@ -38,12 +38,12 @@ const HomePage: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      // Fetch user's IP address (optional, but good for context if Web3Forms supports it or just as custom field)
+      // Fetch user's IP from our own Cloudflare worker (same-origin, not blocked by ad-blockers)
       let userIp = 'Unknown';
       try {
-        const ipRes = await fetch('https://api.ipify.org?format=json');
+        const ipRes = await fetch('/api/ip');
         const ipData = await ipRes.json() as { ip: string };
-        userIp = ipData.ip;
+        userIp = ipData.ip || 'Unknown';
       } catch { }
 
       const response = await fetch('https://api.web3forms.com/submit', {
