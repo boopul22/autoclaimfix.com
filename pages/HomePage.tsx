@@ -10,23 +10,32 @@ const HomePage: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [apiKey, setApiKey] = useState<string>(process.env.WEB3_FORM_API || '1e325f4f-7489-457f-9e7f-5309e6c249ec');
 
-  React.useEffect(() => {
-    // Fetch configuration from the worker if available
-    fetch('/api/config')
-      .then(res => res.json())
-      .then((data: { WEB3_FORM_API?: string }) => {
-        if (data && data.WEB3_FORM_API) {
-          setApiKey(data.WEB3_FORM_API);
-        }
-      })
-      .catch(() => {
-        // Fallback to build-time env var or check if we are in dev mode
-        console.log('Using default or build-time configuration');
-      });
-  }, []);
+  // Web3Forms access key (free plan requires the submission to come from the
+  // client, so the key lives here).
+  const WEB3_FORM_API = '1e325f4f-7489-457f-9e7f-5309e6c249ec';
 
+  // Resolve the visitor IP reliably:
+  //  1) our own same-origin Pages Function (/api/ip) — fast, never ad-blocked,
+  //     reads CF-Connecting-IP at the Cloudflare edge.
+  //  2) external ipify as a fallback if (1) is ever unavailable.
+  const resolveIp = async (): Promise<string> => {
+    try {
+      const r = await fetch('/api/ip', { cache: 'no-store' });
+      if (r.ok) {
+        const d = await r.json() as { ip?: string };
+        if (d.ip && d.ip !== 'Unknown') return d.ip;
+      }
+    } catch { /* fall through */ }
+    try {
+      const r = await fetch('https://api.ipify.org?format=json');
+      if (r.ok) {
+        const d = await r.json() as { ip?: string };
+        if (d.ip) return d.ip;
+      }
+    } catch { /* fall through */ }
+    return 'Unknown';
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,13 +47,7 @@ const HomePage: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      // Fetch user's IP from our own Cloudflare worker (same-origin, not blocked by ad-blockers)
-      let userIp = 'Unknown';
-      try {
-        const ipRes = await fetch('/api/ip');
-        const ipData = await ipRes.json() as { ip: string };
-        userIp = ipData.ip || 'Unknown';
-      } catch { }
+      const userIp = await resolveIp();
 
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -53,14 +56,12 @@ const HomePage: React.FC = () => {
           'Accept': 'application/json',
         },
         body: JSON.stringify({
-          // Use the access key state variable (fetched from worker or fallback)
-          access_key: apiKey,
+          access_key: WEB3_FORM_API,
           name: fullName,
           email: email,
           phone: phone,
           subject: `New Claim Enquiry - ${fullName}`,
           message: `New claim enquiry from ${fullName}. Phone: ${phone}. IP: ${userIp}`,
-          // Custom fields for Web3Forms to show in the email
           'IP Address': userIp,
           'Consent': 'User agreed to Terms & Privacy Policy and consented to contact',
         }),
