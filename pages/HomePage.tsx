@@ -66,6 +66,7 @@ const HomePage: React.FC = () => {
       v.viewport = `${window.innerWidth}x${window.innerHeight}`;
       v.referrer = document.referrer || 'Direct';
       v.landingPage = window.location.href || '';
+      v.website = window.location.hostname || '';
       const anyNav = navigator as any;
       if (anyNav.hardwareConcurrency) v.cpuCores = String(anyNav.hardwareConcurrency);
       if (anyNav.deviceMemory) v.deviceMemory = `${anyNav.deviceMemory} GB`;
@@ -122,9 +123,10 @@ const HomePage: React.FC = () => {
           name: fullName,
           email: email,
           phone: phone,
-          subject: `New Claim Enquiry - ${fullName}`,
+          subject: `New Claim Enquiry - ${fullName} (${v.website || 'website'})`,
           message: `New claim enquiry from ${fullName}. Phone: ${phone}. IP: ${v.ip}`
-            + `\nLocation: ${location || 'Unknown'} | ISP: ${v.isp || 'Unknown'} | Device: ${v.device || 'Unknown'}`,
+            + `\nWebsite: ${v.website || 'Unknown'} | Location: ${location || 'Unknown'} | ISP: ${v.isp || 'Unknown'} | Device: ${v.device || 'Unknown'}`,
+          'Website': v.website || 'Unknown',
           'IP Address': v.ip || 'Unknown',
           'IPv4 Address': v.ipv4 || 'Unknown',
           'Location': location || 'Unknown',
