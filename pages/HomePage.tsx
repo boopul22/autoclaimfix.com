@@ -16,26 +16,86 @@ const HomePage: React.FC = () => {
   // provide), so the key lives here and the form posts directly.
   const WEB3_FORM_API = '1e325f4f-7489-457f-9e7f-5309e6c249ec';
 
-  // Resolve the visitor IP reliably:
-  //  1) our own same-origin Pages Function (/api/ip) — fast, never ad-blocked,
-  //     reads CF-Connecting-IP at the Cloudflare edge.
-  //  2) external ipify as a fallback if (1) is ever unavailable.
-  const resolveIp = async (): Promise<string> => {
+  // Resolve fetch within a timeout so a slow lookup never blocks submission.
+  const fetchJson = async (url: string, ms = 4000): Promise<any | null> => {
     try {
-      const r = await fetch('/api/ip', { cache: 'no-store' });
-      if (r.ok) {
-        const d = await r.json() as { ip?: string };
-        if (d.ip && d.ip !== 'Unknown') return d.ip;
-      }
-    } catch { /* fall through */ }
+      const ctrl = new AbortController();
+      const t = setTimeout(() => ctrl.abort(), ms);
+      const r = await fetch(url, { cache: 'no-store', signal: ctrl.signal });
+      clearTimeout(t);
+      if (r.ok) return await r.json();
+    } catch { /* ignore */ }
+    return null;
+  };
+
+  // Build a friendly "Browser on OS (Mobile/Desktop)" label from the UA string.
+  const describeDevice = (ua: string): string => {
+    if (!ua) return 'Unknown';
+    let os = 'Unknown OS';
+    if (/Windows NT 10/.test(ua)) os = 'Windows 10/11';
+    else if (/Windows/.test(ua)) os = 'Windows';
+    else if (/iPhone|iPad|iPod/.test(ua)) os = 'iOS';
+    else if (/Android/.test(ua)) os = 'Android';
+    else if (/Mac OS X/.test(ua)) os = 'macOS';
+    else if (/CrOS/.test(ua)) os = 'ChromeOS';
+    else if (/Linux/.test(ua)) os = 'Linux';
+    let br = 'Unknown Browser';
+    if (/Edg\//.test(ua)) br = 'Edge';
+    else if (/OPR\/|Opera/.test(ua)) br = 'Opera';
+    else if (/SamsungBrowser/.test(ua)) br = 'Samsung Internet';
+    else if (/Firefox\//.test(ua)) br = 'Firefox';
+    else if (/Chrome\//.test(ua)) br = 'Chrome';
+    else if (/Safari\//.test(ua) && /Version\//.test(ua)) br = 'Safari';
+    const form = /Mobile|Android|iPhone|iPad/.test(ua) ? 'Mobile' : 'Desktop';
+    return `${br} on ${os} (${form})`;
+  };
+
+  // Gather everything we can about the visitor: real IP (v4 + v6), geolocation,
+  // ISP, device/browser, timezone, language, referrer, etc. Never throws.
+  const collectVisitor = async () => {
+    const v: Record<string, string> = {};
+
+    // Browser-side signals (synchronous, always available)
     try {
-      const r = await fetch('https://api.ipify.org?format=json');
-      if (r.ok) {
-        const d = await r.json() as { ip?: string };
-        if (d.ip) return d.ip;
-      }
-    } catch { /* fall through */ }
-    return 'Unknown';
+      const ua = navigator.userAgent || '';
+      v.userAgent = ua;
+      v.device = describeDevice(ua);
+      v.language = (navigator.languages && navigator.languages.join(', ')) || navigator.language || '';
+      v.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+      v.screen = `${window.screen.width}x${window.screen.height} @${window.devicePixelRatio || 1}x`;
+      v.viewport = `${window.innerWidth}x${window.innerHeight}`;
+      v.referrer = document.referrer || 'Direct';
+      v.landingPage = window.location.href || '';
+      const anyNav = navigator as any;
+      if (anyNav.hardwareConcurrency) v.cpuCores = String(anyNav.hardwareConcurrency);
+      if (anyNav.deviceMemory) v.deviceMemory = `${anyNav.deviceMemory} GB`;
+      if (anyNav.connection && anyNav.connection.effectiveType) v.connection = String(anyNav.connection.effectiveType);
+    } catch { /* ignore */ }
+
+    // Edge data (our Pages Function) + an IPv4-only lookup, in parallel.
+    const [edge, ipv4] = await Promise.all([
+      fetchJson('/api/ip'),
+      fetchJson('https://api.ipify.org?format=json'),
+    ]);
+
+    if (edge) {
+      v.ip = edge.ip && edge.ip !== 'Unknown' ? edge.ip : '';
+      v.country = edge.country || '';
+      v.region = edge.region || '';
+      v.city = edge.city || '';
+      v.postcode = edge.postalCode || '';
+      v.isp = edge.isp || '';
+      v.asn = edge.asn ? `AS${edge.asn}` : '';
+      v.coordinates = edge.latitude && edge.longitude ? `${edge.latitude}, ${edge.longitude}` : '';
+      v.edgeTimezone = edge.timezone || '';
+      v.cfDatacenter = edge.colo || '';
+      v.protocol = [edge.httpProtocol, edge.tlsVersion].filter(Boolean).join(' / ');
+    }
+    v.ipv4 = (ipv4 && ipv4.ip) || '';
+    // Primary IP: prefer the edge IP (real, v4 or v6); fall back to the IPv4 lookup.
+    if (!v.ip) v.ip = v.ipv4 || 'Unknown';
+
+    return v;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -48,7 +108,8 @@ const HomePage: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      const userIp = await resolveIp();
+      const v = await collectVisitor();
+      const location = [v.city, v.region, v.postcode, v.country].filter(Boolean).join(', ');
 
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -62,8 +123,30 @@ const HomePage: React.FC = () => {
           email: email,
           phone: phone,
           subject: `New Claim Enquiry - ${fullName}`,
-          message: `New claim enquiry from ${fullName}. Phone: ${phone}. IP: ${userIp}`,
-          'IP Address': userIp,
+          message: `New claim enquiry from ${fullName}. Phone: ${phone}. IP: ${v.ip}`
+            + `\nLocation: ${location || 'Unknown'} | ISP: ${v.isp || 'Unknown'} | Device: ${v.device || 'Unknown'}`,
+          'IP Address': v.ip || 'Unknown',
+          'IPv4 Address': v.ipv4 || 'Unknown',
+          'Location': location || 'Unknown',
+          'City': v.city || 'Unknown',
+          'Region': v.region || 'Unknown',
+          'Postcode': v.postcode || 'Unknown',
+          'Country': v.country || 'Unknown',
+          'Coordinates': v.coordinates || 'Unknown',
+          'ISP / Network': [v.isp, v.asn].filter(Boolean).join(' ') || 'Unknown',
+          'Timezone': v.timezone || v.edgeTimezone || 'Unknown',
+          'Browser / Device': v.device || 'Unknown',
+          'Language': v.language || 'Unknown',
+          'Screen': v.screen || 'Unknown',
+          'Viewport': v.viewport || 'Unknown',
+          'Connection': v.connection || 'Unknown',
+          'CPU Cores': v.cpuCores || 'Unknown',
+          'Device Memory': v.deviceMemory || 'Unknown',
+          'Referrer': v.referrer || 'Direct',
+          'Landing Page': v.landingPage || 'Unknown',
+          'CF Datacenter': v.cfDatacenter || 'Unknown',
+          'Protocol': v.protocol || 'Unknown',
+          'User Agent': v.userAgent || 'Unknown',
           'Consent': 'User agreed to Terms & Privacy Policy and consented to contact',
         }),
       });
