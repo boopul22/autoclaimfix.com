@@ -20,7 +20,53 @@
         font-family: 'Inter', sans-serif;
       }
     </style>
-  </head>
+      <!-- First-party traffic-source capture (claim sites) -->
+    <script>
+    (function(){try{
+      var qs=new URLSearchParams(location.search),ua=navigator.userAgent||'';
+      var CLICK=['gclid','gbraid','wbraid','fbclid','ttclid','msclkid','dclid','twclid','li_fat_id','epik','sccid','irclickid'];
+      var UTM=['utm_source','utm_medium','utm_campaign','utm_term','utm_content'];
+      function app(){
+        if(/FBAN|FBAV|FB_IAB/i.test(ua))return'facebook';
+        if(/Instagram/i.test(ua))return'instagram';
+        if(/Bytedance|musical_ly|TikTok|Trill/i.test(ua))return'tiktok';
+        if(/Snapchat/i.test(ua))return'snapchat';
+        if(/Twitter/i.test(ua))return'twitter';
+        if(/Pinterest/i.test(ua))return'pinterest';
+        if(/LinkedInApp/i.test(ua))return'linkedin';
+        if(/WhatsApp/i.test(ua))return'whatsapp';
+        return'';}
+      var s={};
+      UTM.forEach(function(k){var v=qs.get(k);if(v)s[k]=v;});
+      CLICK.forEach(function(k){var v=qs.get(k);if(v)s[k]=v;});
+      var inapp=app();
+      var detected = s.utm_source ? (s.utm_source+'/'+(s.utm_medium||'(unset)')) :
+        (s.gclid||s.gbraid||s.wbraid) ? 'google/cpc' :
+        s.fbclid ? 'facebook/paid' : s.ttclid ? 'tiktok/paid' : s.msclkid ? 'bing/cpc' :
+        inapp ? (inapp+'/social-inapp') :
+        document.referrer ? (function(){try{return new URL(document.referrer).hostname+'/referral';}catch(e){return'referral';}})() :
+        'direct/none';
+      s.detected_source=detected; s.inapp_browser=inapp||'';
+      s.referrer=document.referrer||''; s.landing_page=location.pathname+location.search;
+      var KEY='__src',first;
+      try{first=JSON.parse(sessionStorage.getItem(KEY)||'null');}catch(e){}
+      if(!first){try{sessionStorage.setItem(KEY,JSON.stringify(s));}catch(e){}first=s;}
+      window.__src=first;
+      if(window.gtag){gtag('event','traffic_source',{detected_source:first.detected_source,src_inapp:first.inapp_browser||'(none)',src_referrer:first.referrer||'(none)'});}
+      var FE=/(web3forms\.com|formsubmit\.co)/i,of=window.fetch;
+      window.fetch=function(i,init){try{var u=(typeof i==='string')?i:(i&&i.url)||'';
+        if(FE.test(u)&&init&&init.body){var d=window.__src||{};
+          if(init.body instanceof FormData){Object.keys(d).forEach(function(k){if(!init.body.has(k))init.body.append(k,d[k]);});}
+          else if(typeof init.body==='string'){try{var j=JSON.parse(init.body);Object.keys(d).forEach(function(k){if(j[k]==null)j[k]=d[k];});init.body=JSON.stringify(j);}catch(e){}}
+        }}catch(e){}return of.apply(this,arguments);};
+      function fill(f){var d=window.__src||{};Object.keys(d).forEach(function(k){if(!f.querySelector('[name="'+k+'"]')){var n=document.createElement('input');n.type='hidden';n.name=k;n.value=d[k];f.appendChild(n);}});}
+      function scan(){document.querySelectorAll('form').forEach(fill);}
+      if(document.readyState!=='loading')scan();else document.addEventListener('DOMContentLoaded',scan);
+      try{new MutationObserver(scan).observe(document.documentElement,{childList:true,subtree:true});}catch(e){}
+    }catch(e){}})();
+    </script>
+
+</head>
   <body class="bg-slate-50 text-slate-900 antialiased">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
