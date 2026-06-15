@@ -7,6 +7,10 @@
     "not_found_handling": "single-page-application"
   },
   "main": "src/worker.ts",
+  "routes": [
+    { "pattern": "autoclaimfix.com", "custom_domain": true },
+    { "pattern": "www.autoclaimfix.com", "custom_domain": true }
+  ],
   "send_email": [
     { "name": "SEND_EMAIL" }
   ]
