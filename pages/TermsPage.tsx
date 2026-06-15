@@ -6,16 +6,16 @@ const TermsPage: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold text-slate-900 mb-2">Terms and Conditions</h1>
 
-        <div className="prose prose-slate max-w-none space-y-6 text-slate-600 leading-relaxed">
+        <div className="prose pbrand-slate max-w-none space-y-6 text-slate-600 leading-relaxed">
           <section>
             <h2 className="text-xl font-semibold text-slate-900 mb-3">1. Introduction</h2>
-            <p>These Terms and Conditions govern your access to and use of the ukclaims.org website and services.</p>
+            <p>These Terms and Conditions govern your access to and use of the autoclaimfix.com website and services.</p>
             <p className="mt-2">By using our Site and services, you agree to these Terms. If you do not agree, please do not use our services.</p>
           </section>
 
           <section>
             <h2 className="text-xl font-semibold text-slate-900 mb-3">2. Services Offered</h2>
-            <p>ukclaims.org assists individuals in filing and managing car accident claims. We are not an insurance company. Our platform helps facilitate the claims process by collecting relevant information and submitting it to insurers or legal partners.</p>
+            <p>autoclaimfix.com assists individuals in filing and managing car accident claims. We are not an insurance company. Our platform helps facilitate the claims process by collecting relevant information and submitting it to insurers or legal partners.</p>
           </section>
 
           <section>
@@ -35,7 +35,7 @@ const TermsPage: React.FC = () => {
 
           <section>
             <h2 className="text-xl font-semibold text-slate-900 mb-3">5. Intellectual Property</h2>
-            <p>All content on our Site, including text, logos, images, and software, is the property of ukclaims.org or its licensors and is protected by copyright laws.</p>
+            <p>All content on our Site, including text, logos, images, and software, is the property of autoclaimfix.com or its licensors and is protected by copyright laws.</p>
           </section>
 
           <section>
@@ -45,7 +45,7 @@ const TermsPage: React.FC = () => {
 
           <section>
             <h2 className="text-xl font-semibold text-slate-900 mb-3">7. Limitation of Liability</h2>
-            <p>ukclaims.org shall not be liable for any indirect, incidental, or consequential damages arising from your use of our services.</p>
+            <p>autoclaimfix.com shall not be liable for any indirect, incidental, or consequential damages arising from your use of our services.</p>
           </section>
 
           <section>
@@ -60,7 +60,7 @@ const TermsPage: React.FC = () => {
 
           <section className="mt-8 pt-8 border-t border-slate-200">
             <h2 className="text-xl font-semibold text-slate-900 mb-3">Call us for a free consultation</h2>
-            <p className="text-2xl font-bold text-blue-600">0800 123 4567</p>
+            <p className="text-2xl font-bold text-brand-600">0800 123 4567</p>
             <p className="text-slate-500 mt-2">Need help after a car accident? We're here for you 24/7.</p>
           </section>
         </div>

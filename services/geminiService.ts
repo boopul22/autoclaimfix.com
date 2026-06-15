@@ -16,7 +16,7 @@ export const assessClaim = async (
     const model = "gemini-3-flash-preview";
 
     const prompt = `
-      You are an expert AI legal assistant for a UK-based claims management company called "ukclaims.org".
+      You are an expert AI legal assistant for a UK-based claims management company called "autoclaimfix.com".
       A user has submitted a new claim inquiry.
       
       Claim Type: ${claimType}

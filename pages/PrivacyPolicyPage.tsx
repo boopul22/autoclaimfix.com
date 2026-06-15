@@ -7,11 +7,11 @@ const PrivacyPolicyPage: React.FC = () => {
         <h1 className="text-3xl font-bold text-slate-900 mb-2">Privacy Policy</h1>
         <p className="text-sm text-slate-500 mb-8">Last Updated: April 24, 2026</p>
 
-        <div className="prose prose-slate max-w-none space-y-6 text-slate-600 leading-relaxed">
+        <div className="prose pbrand-slate max-w-none space-y-6 text-slate-600 leading-relaxed">
           <section>
             <h2 className="text-xl font-semibold text-slate-900 mb-3">1. Introduction and Scope</h2>
             <p>
-              ukclaims.org (“Company,” “we,” “our,” or “us”) is a marketing and technology platform operating in the United Kingdom. This Privacy Policy explains how we collect, use, store, share and protect your personal data when you: (a) visit our website (the “Site”); (b) use our claim-enquiry tools; or (c) contact us via our telephone lines or request to be contacted by our third-party marketing partners, including but not limited to C3Claims, Claim3000, Mis-Sold Finance, FCA-authorised claims management companies and solicitors’ firms (collectively, “Marketing Partners”).
+              autoclaimfix.com (“Company,” “we,” “our,” or “us”) is a marketing and technology platform operating in the United Kingdom. This Privacy Policy explains how we collect, use, store, share and protect your personal data when you: (a) visit our website (the “Site”); (b) use our claim-enquiry tools; or (c) contact us via our telephone lines or request to be contacted by our third-party marketing partners, including but not limited to C3Claims, Claim3000, Mis-Sold Finance, FCA-authorised claims management companies and solicitors’ firms (collectively, “Marketing Partners”).
             </p>
             <p className="mt-2">
               This Policy is issued in accordance with the UK General Data Protection Regulation (“UK GDPR”), the Data Protection Act 2018 (“DPA 2018”) and the Privacy and Electronic Communications Regulations 2003 (“PECR”). Our services are intended for residents of the United Kingdom only.
@@ -23,9 +23,9 @@ const PrivacyPolicyPage: React.FC = () => {
 
           <section>
             <h2 className="text-xl font-semibold text-slate-900 mb-3">2. Not a Law Firm or Insurance Provider</h2>
-            <p><span className="font-bold">Important Disclosure:</span> ukclaims.org is not a law firm, a solicitors’ referral service, or an insurance company. We do not provide legal advice or regulated claims management services directly.</p>
+            <p><span className="font-bold">Important Disclosure:</span> autoclaimfix.com is not a law firm, a solicitors’ referral service, or an insurance company. We do not provide legal advice or regulated claims management services directly.</p>
             <p className="mt-2"><span className="font-bold">No Solicitor-Client Relationship:</span> Your use of the Site, or any communication with our representatives, does not create a solicitor-client relationship between you and the Company or any Marketing Partner. A solicitor-client relationship is only formed if you sign a formal engagement letter directly with a regulated law firm or FCA-authorised claims management company.</p>
-            <p className="mt-2"><span className="font-bold">You do not have to use a claims management company.</span> You can pursue a claim yourself for free by contacting the responsible lender directly, and if you are not satisfied with the outcome you can refer the matter to the Financial Ombudsman Service (<a href="https://www.financial-ombudsman.org.uk" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">financial-ombudsman.org.uk</a>) or the Financial Services Compensation Scheme (<a href="https://www.fscs.org.uk" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">fscs.org.uk</a>) free of charge.</p>
+            <p className="mt-2"><span className="font-bold">You do not have to use a claims management company.</span> You can pursue a claim yourself for free by contacting the responsible lender directly, and if you are not satisfied with the outcome you can refer the matter to the Financial Ombudsman Service (<a href="https://www.financial-ombudsman.org.uk" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">financial-ombudsman.org.uk</a>) or the Financial Services Compensation Scheme (<a href="https://www.fscs.org.uk" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">fscs.org.uk</a>) free of charge.</p>
           </section>
 
           <section>
@@ -72,11 +72,11 @@ const PrivacyPolicyPage: React.FC = () => {
             <p className="mt-2"><span className="font-bold">Soft opt-in:</span> where you have previously enquired with us about a similar service, we may also contact you by email or SMS about related services, on the basis of the “soft opt-in” permitted by Regulation 22(3) of PECR. Every such message will include a clear and free way to opt out.</p>
             <p className="mt-2">You have the right to withdraw your consent at any time. You can:</p>
             <ul className="list-disc pl-6 space-y-1 mt-2">
-              <li>email us at <a href="mailto:support@ukclaims.org" className="text-blue-600 hover:underline">support@ukclaims.org</a> with the subject line “Unsubscribe”;</li>
+              <li>email us at <a href="mailto:info@autoclaimfix.com" className="text-brand-600 hover:underline">info@autoclaimfix.com</a> with the subject line “Unsubscribe”;</li>
               <li>follow the unsubscribe link in any marketing email we send;</li>
               <li>reply STOP to any marketing SMS;</li>
               <li>tell any caller you do not wish to be contacted further; and</li>
-              <li>register with the Telephone Preference Service (TPS) at <a href="https://www.tpsonline.org.uk" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">tpsonline.org.uk</a> to opt out of unsolicited live marketing calls.</li>
+              <li>register with the Telephone Preference Service (TPS) at <a href="https://www.tpsonline.org.uk" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">tpsonline.org.uk</a> to opt out of unsolicited live marketing calls.</li>
             </ul>
             <p className="mt-2">Withdrawing consent will not affect the lawfulness of processing carried out before withdrawal, and may mean we are unable to progress your claim enquiry.</p>
           </section>
@@ -94,9 +94,9 @@ const PrivacyPolicyPage: React.FC = () => {
               <li><span className="font-bold">Right to withdraw consent</span> – at any time, where consent is the lawful basis.</li>
               <li><span className="font-bold">Rights relating to automated decision-making</span> – we do not carry out solely automated decision-making with legal or similarly significant effects.</li>
             </ul>
-            <p className="mt-2">To exercise any of these rights, email <a href="mailto:support@ukclaims.org" className="text-blue-600 hover:underline">support@ukclaims.org</a>. We will respond within one month. We do not charge a fee for reasonable requests.</p>
+            <p className="mt-2">To exercise any of these rights, email <a href="mailto:info@autoclaimfix.com" className="text-brand-600 hover:underline">info@autoclaimfix.com</a>. We will respond within one month. We do not charge a fee for reasonable requests.</p>
             <p className="mt-2">
-              <span className="font-bold">Right to complain to the ICO:</span> if you are unhappy with how we have handled your personal data, you can lodge a complaint with the Information Commissioner’s Office at <a href="https://ico.org.uk" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">ico.org.uk</a> or by calling 0303 123 1113.
+              <span className="font-bold">Right to complain to the ICO:</span> if you are unhappy with how we have handled your personal data, you can lodge a complaint with the Information Commissioner’s Office at <a href="https://ico.org.uk" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">ico.org.uk</a> or by calling 0303 123 1113.
             </p>
           </section>
 
@@ -137,7 +137,7 @@ const PrivacyPolicyPage: React.FC = () => {
               <span className="font-bold">Data Controller:</span> Immaculate Ltd
             </p>
             <p>
-              <span className="font-bold">Email:</span> <a href="mailto:support@ukclaims.org" className="text-blue-600 hover:underline">support@ukclaims.org</a>
+              <span className="font-bold">Email:</span> <a href="mailto:info@autoclaimfix.com" className="text-brand-600 hover:underline">info@autoclaimfix.com</a>
             </p>
             <p>
               <span className="font-bold">ICO Registration:</span> ZB932467

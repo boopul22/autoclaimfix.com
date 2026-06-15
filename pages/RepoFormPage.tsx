@@ -63,7 +63,7 @@ const RepoFormPage: React.FC = () => {
       </div>
 
       <p className="mt-8 text-slate-500 text-sm">
-        UK Claims Repository Management System v1.0
+        AutoClaimFix Repository Management System v1.0
       </p>
     </div>
   );

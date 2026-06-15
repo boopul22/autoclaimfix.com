@@ -4,10 +4,10 @@ import { ShieldCheck, Award, Users, Scale } from 'lucide-react';
 const AboutPage: React.FC = () => {
   return (
     <div className="bg-white">
-      <section className="bg-gradient-to-br from-blue-900 to-slate-900 text-white py-16">
+      <section className="bg-gradient-to-br from-brand-900 to-slate-900 text-white py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-3xl md:text-5xl font-bold mb-4">About ukclaims.org</h1>
-          <p className="text-lg text-slate-300">Trusted claims management for UK residents since 2015.</p>
+          <h1 className="text-3xl md:text-5xl font-bold mb-4">About autoclaimfix.com</h1>
+          <p className="text-lg text-slate-300">Helping UK residents reclaim what they're owed — trusted claims management since 2015.</p>
         </div>
       </section>
 
@@ -16,7 +16,7 @@ const AboutPage: React.FC = () => {
           <div>
             <h2 className="text-2xl font-bold text-slate-900 mb-4">Who We Are</h2>
             <p className="text-slate-600 leading-relaxed">
-              ukclaims.org is a UK-based claims management service dedicated to helping individuals receive the compensation they deserve. We specialise in personal injury, housing disrepair, financial mis-selling, medical negligence, and data breach claims. Our team of experienced professionals works alongside regulated solicitors to ensure every claim is handled with the utmost care and professionalism.
+              autoclaimfix.com is a UK-based claims management service dedicated to helping individuals receive the compensation they deserve. We specialise in personal injury, housing disrepair, financial mis-selling, medical negligence, and data breach claims. Our team of experienced professionals works alongside regulated solicitors to ensure every claim is handled with the utmost care and professionalism.
             </p>
           </div>
 
@@ -35,7 +35,7 @@ const AboutPage: React.FC = () => {
               { icon: Scale, label: '8+ Years', desc: 'Experience' },
             ].map((item) => (
               <div key={item.label} className="text-center">
-                <item.icon className="h-8 w-8 text-blue-700 mx-auto mb-2" />
+                <item.icon className="h-8 w-8 text-brand-700 mx-auto mb-2" />
                 <p className="text-2xl font-bold text-slate-900">{item.label}</p>
                 <p className="text-sm text-slate-500">{item.desc}</p>
               </div>
@@ -45,7 +45,7 @@ const AboutPage: React.FC = () => {
           <div>
             <h2 className="text-2xl font-bold text-slate-900 mb-4">Accreditations</h2>
             <p className="text-slate-600 leading-relaxed">
-              ukclaims.org is operated by Immaculate Ltd, registered in England & Wales. We are registered with the Information Commissioner's Office (ICO), registration number ZB932467, and adhere to the highest standards of data protection and professional conduct.
+              autoclaimfix.com is operated by Immaculate Ltd, registered in England & Wales. We are registered with the Information Commissioner's Office (ICO), registration number ZB932467, and adhere to the highest standards of data protection and professional conduct.
             </p>
           </div>
         </div>

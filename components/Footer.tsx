@@ -9,8 +9,8 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <Link to="/" className="flex items-center gap-2 mb-4">
-              <ShieldCheck className="h-6 w-6 text-blue-500" />
-              <span className="font-bold text-lg text-white">ukclaims.org</span>
+              <ShieldCheck className="h-6 w-6 text-brand-500" />
+              <span className="font-bold text-lg text-white">autoclaimfix.com</span>
             </Link>
             <p className="text-sm leading-relaxed">
               Helping UK residents claim what they are owed with professional, transparent, and efficient legal assistance.
@@ -20,16 +20,16 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-white font-semibold mb-4">Legal</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/about" className="hover:text-blue-400 transition-colors">About Us</Link></li>
-              <li><Link to="/privacy-policy" className="hover:text-blue-400 transition-colors">Privacy Policy</Link></li>
-              <li><Link to="/terms" className="hover:text-blue-400 transition-colors">Terms of Service</Link></li>
+              <li><Link to="/about" className="hover:text-brand-400 transition-colors">About Us</Link></li>
+              <li><Link to="/privacy-policy" className="hover:text-brand-400 transition-colors">Privacy Policy</Link></li>
+              <li><Link to="/terms" className="hover:text-brand-400 transition-colors">Terms of Service</Link></li>
             </ul>
           </div>
 
           <div>
             <h3 className="text-white font-semibold mb-4">Contact</h3>
             <ul className="space-y-2 text-sm">
-              <li className="flex items-center gap-2"><Mail className="h-4 w-4" /> support@ukclaims.org</li>
+              <li className="flex items-center gap-2"><Mail className="h-4 w-4" /> info@autoclaimfix.com</li>
               <li className="flex items-center gap-2"><Phone className="h-4 w-4" /> 0800 123 4567</li>
             </ul>
           </div>
@@ -42,15 +42,15 @@ const Footer: React.FC = () => {
           <p>Immaculate Ltd</p>
           <p>ICO: ZB932467</p>
           <div className="flex flex-wrap justify-center gap-3 mt-2">
-            <Link to="/privacy-policy" className="hover:text-blue-400 transition-colors">Cookies Policy</Link>
+            <Link to="/privacy-policy" className="hover:text-brand-400 transition-colors">Cookies Policy</Link>
             <span>|</span>
-            <Link to="/privacy-policy" className="hover:text-blue-400 transition-colors">Privacy Policy</Link>
+            <Link to="/privacy-policy" className="hover:text-brand-400 transition-colors">Privacy Policy</Link>
             <span>|</span>
-            <Link to="/terms" className="hover:text-blue-400 transition-colors">Terms &amp; Conditions</Link>
+            <Link to="/terms" className="hover:text-brand-400 transition-colors">Terms &amp; Conditions</Link>
             <span>|</span>
-            <Link to="/about" className="hover:text-blue-400 transition-colors">Contact</Link>
+            <Link to="/about" className="hover:text-brand-400 transition-colors">Contact</Link>
           </div>
-          <p>&copy; 2025 PCP Claim Immac</p>
+          <p>&copy; 2025 autoclaimfix.com</p>
         </div>
       </div>
     </footer>

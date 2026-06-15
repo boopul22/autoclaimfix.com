@@ -8,9 +8,9 @@ const ActivatePage: React.FC = () => {
     try {
       const formData = new FormData();
       formData.append('name', 'Activation Test');
-      formData.append('email', 'activate@ukclaims.org');
+      formData.append('email', 'info@autoclaimfix.com');
       formData.append('message', 'This is an activation request to verify the email endpoint.');
-      formData.append('_subject', 'FormSubmit Activation - ukclaims.org');
+      formData.append('_subject', 'FormSubmit Activation - autoclaimfix.com');
       formData.append('_captcha', 'false');
       formData.append('_template', 'table');
 
@@ -38,7 +38,7 @@ const ActivatePage: React.FC = () => {
         <div className="text-left text-slate-600 mb-8 space-y-2">
           <p className="font-semibold text-slate-700">Follow these 3 simple steps:</p>
           <p>1. Click the <span className="font-semibold">Activate</span> button below.</p>
-          <p>2. Open your inbox at <span className="font-semibold text-blue-700">immaculatemedia2018@gmail.com</span>.</p>
+          <p>2. Open your inbox at <span className="font-semibold text-brand-700">immaculatemedia2018@gmail.com</span>.</p>
           <p>3. Click the confirmation link in the email from FormSubmit.</p>
           <p className="text-sm text-slate-500 pt-2">That's it! You'll start receiving form notifications after confirming.</p>
         </div>
@@ -46,14 +46,14 @@ const ActivatePage: React.FC = () => {
         {status === 'idle' && (
           <button
             onClick={handleActivate}
-            className="w-full bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-6 rounded-lg transition-colors cursor-pointer"
+            className="w-full bg-brand-700 hover:bg-brand-800 text-white font-semibold py-3 px-6 rounded-lg transition-colors cursor-pointer"
           >
             Activate
           </button>
         )}
 
         {status === 'loading' && (
-          <div className="flex items-center justify-center gap-3 text-blue-700 font-semibold py-3">
+          <div className="flex items-center justify-center gap-3 text-brand-700 font-semibold py-3">
             <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />

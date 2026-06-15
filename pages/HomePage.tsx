@@ -168,13 +168,13 @@ const HomePage: React.FC = () => {
   };
 
   return (
-    <main className="flex-grow flex flex-col items-center justify-center bg-[#ece8e1] px-4 py-8 md:py-20">
+    <main className="flex-grow flex flex-col items-center justify-center bg-slate-50 px-4 py-8 md:py-20">
       <div className="text-center mb-8">
         <h1 className="text-3xl md:text-5xl font-extrabold text-slate-900 uppercase tracking-tight leading-tight mb-3">
           Check Your Car<br />Finance Claim
         </h1>
         <p className="text-lg text-slate-600">
-          Find out if you're owed money in just 2 minutes
+          See if you're owed compensation — it takes under 2 minutes.
         </p>
       </div>
 
@@ -194,7 +194,7 @@ const HomePage: React.FC = () => {
                 setPhone('');
                 setOptIn(false);
               }}
-              className="text-rose-600 hover:text-rose-700 font-semibold transition-colors"
+              className="text-brand-600 hover:text-brand-700 font-semibold transition-colors"
             >
               Submit another enquiry
             </button>
@@ -212,7 +212,7 @@ const HomePage: React.FC = () => {
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder="Enter your full name"
-                className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all text-slate-900 placeholder:text-slate-400"
+                className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all text-slate-900 placeholder:text-slate-400"
               />
             </div>
 
@@ -227,7 +227,7 @@ const HomePage: React.FC = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all text-slate-900 placeholder:text-slate-400"
+                className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all text-slate-900 placeholder:text-slate-400"
               />
             </div>
 
@@ -242,7 +242,7 @@ const HomePage: React.FC = () => {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="Enter your phone number"
-                className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all text-slate-900 placeholder:text-slate-400"
+                className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all text-slate-900 placeholder:text-slate-400"
               />
             </div>
 
@@ -255,10 +255,10 @@ const HomePage: React.FC = () => {
                     setOptIn(e.target.checked);
                     if (e.target.checked) setError(null);
                   }}
-                  className="w-5 h-5 mt-0.5 text-rose-600 border-gray-300 rounded focus:ring-rose-500 cursor-pointer"
+                  className="w-5 h-5 mt-0.5 text-brand-600 border-gray-300 rounded focus:ring-brand-500 cursor-pointer"
                 />
                 <span className="text-xs text-slate-600 leading-snug">
-                  <span className="font-bold text-slate-800">I agree to the <Link to="/terms" className="underline hover:text-rose-600">Terms</Link> & <Link to="/privacy-policy" className="underline hover:text-rose-600">Privacy Policy</Link>.</span>{' '}
+                  <span className="font-bold text-slate-800">I agree to the <Link to="/terms" className="underline hover:text-brand-600">Terms</Link> & <Link to="/privacy-policy" className="underline hover:text-brand-600">Privacy Policy</Link>.</span>{' '}
                   I consent to my personal details being shared with FCA-authorised claims management companies so that they can contact me by telephone, email, and SMS to discuss a potential claim relating to mis-sold or overcharged vehicle finance, including Discretionary Commission Arrangement (DCA) claims.
                 </span>
               </label>
@@ -274,7 +274,7 @@ const HomePage: React.FC = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-4 text-lg font-bold text-rose-600 border-[3px] border-rose-500 rounded-xl hover:bg-rose-50 active:bg-rose-100 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full py-4 text-lg font-bold text-white bg-cta-600 hover:bg-cta-700 active:bg-cta-800 rounded-xl shadow-lg shadow-cta-600/20 transition-all transform hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none"
             >
               {isSubmitting ? (
                 <span className="flex items-center justify-center gap-2">
