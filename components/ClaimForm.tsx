@@ -26,6 +26,7 @@ const ClaimForm: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionResult, setSubmissionResult] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [result, setResult] = useState<string>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -37,7 +38,7 @@ const ClaimForm: React.FC = () => {
     if (e.target.checked) setError(null);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!formData.optIn) {
       setError("Please tick the box to agree to the terms and proceed.");
@@ -45,32 +46,29 @@ const ClaimForm: React.FC = () => {
     }
     setError(null);
     setIsSubmitting(true);
+    setResult("Sending....");
 
     try {
+      const fd = new FormData(e.currentTarget);
+      fd.append("access_key", "f1982724-cd37-42e6-881b-b6d6c07592fc");
+      fd.append("subject", `New Claim: ${formData.claimType} - ${formData.firstName} ${formData.lastName}`);
+
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        body: JSON.stringify({
-          access_key: process.env.WEB3_FORM_API || '1e325f4f-7489-457f-9e7f-5309e6c249ec',
-          name: `${formData.firstName} ${formData.lastName}`,
-          email: formData.email,
-          phone: formData.phone,
-          subject: `New Claim: ${formData.claimType} - ${formData.firstName} ${formData.lastName}`,
-          claim_type: formData.claimType,
-          message: formData.description,
-        }),
+        body: fd,
       });
 
       const data = await response.json() as { success: boolean; message: string };
       if (data.success) {
+        setResult("Form Submitted Successfully");
         setSubmissionResult(true);
+        e.currentTarget.reset();
       } else {
+        setResult("Error");
         setError(data.message || 'Submission failed. Please try again.');
       }
     } catch (err) {
+      setResult("Error");
       setError("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
