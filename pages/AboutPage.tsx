@@ -45,7 +45,7 @@ const AboutPage: React.FC = () => {
           <div>
             <h2 className="text-2xl font-bold text-slate-900 mb-4">Accreditations</h2>
             <p className="text-slate-600 leading-relaxed">
-              autoclaimfix.com is operated by Immaculate Ltd, registered in England & Wales. We are registered with the Information Commissioner's Office (ICO), registration number ZB932467, and adhere to the highest standards of data protection and professional conduct.
+              autoclaimfix.com is operated by ML Holdings, registered in England & Wales (FCA Number: 834008, ICO Number: ZB963604), and adheres to the highest standards of data protection and professional conduct.
             </p>
           </div>
         </div>

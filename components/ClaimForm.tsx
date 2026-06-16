@@ -54,7 +54,7 @@ const ClaimForm: React.FC = () => {
           'Accept': 'application/json',
         },
         body: JSON.stringify({
-          access_key: '1e325f4f-7489-457f-9e7f-5309e6c249ec',
+          access_key: process.env.WEB3_FORM_API || '1e325f4f-7489-457f-9e7f-5309e6c249ec',
           name: `${formData.firstName} ${formData.lastName}`,
           email: formData.email,
           phone: formData.phone,

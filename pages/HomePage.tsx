@@ -14,7 +14,7 @@ const HomePage: React.FC = () => {
   // Web3Forms access key. Web3Forms only accepts submissions from the client
   // (server-side needs a whitelisted static IP, which Cloudflare's edge cannot
   // provide), so the key lives here and the form posts directly.
-  const WEB3_FORM_API = '1e325f4f-7489-457f-9e7f-5309e6c249ec';
+  const WEB3_FORM_API = process.env.WEB3_FORM_API || '1e325f4f-7489-457f-9e7f-5309e6c249ec';
 
   // Resolve fetch within a timeout so a slow lookup never blocks submission.
   const fetchJson = async (url: string, ms = 4000): Promise<any | null> => {

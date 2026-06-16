@@ -14,7 +14,7 @@ const ActivatePage: React.FC = () => {
       formData.append('_captcha', 'false');
       formData.append('_template', 'table');
 
-      const res = await fetch('https://formsubmit.co/ajax/immaculatemedia2018@gmail.com', {
+      const res = await fetch('https://formsubmit.co/ajax/info@autoclaimfix.com', {
         method: 'POST',
         body: formData,
         headers: { 'Accept': 'application/json' },
@@ -38,7 +38,7 @@ const ActivatePage: React.FC = () => {
         <div className="text-left text-slate-600 mb-8 space-y-2">
           <p className="font-semibold text-slate-700">Follow these 3 simple steps:</p>
           <p>1. Click the <span className="font-semibold">Activate</span> button below.</p>
-          <p>2. Open your inbox at <span className="font-semibold text-brand-700">immaculatemedia2018@gmail.com</span>.</p>
+          <p>2. Open your inbox at <span className="font-semibold text-brand-700">info@autoclaimfix.com</span>.</p>
           <p>3. Click the confirmation link in the email from FormSubmit.</p>
           <p className="text-sm text-slate-500 pt-2">That's it! You'll start receiving form notifications after confirming.</p>
         </div>
@@ -66,7 +66,7 @@ const ActivatePage: React.FC = () => {
           <div className="bg-green-50 border border-green-200 rounded-lg p-4">
             <p className="text-green-800 font-semibold mb-1">Activation request sent!</p>
             <p className="text-green-700 text-sm">
-              Check your inbox at <span className="font-semibold">immaculatemedia2018@gmail.com</span> and click the confirmation link from FormSubmit.
+              Check your inbox at <span className="font-semibold">info@autoclaimfix.com</span> and click the confirmation link from FormSubmit.
             </p>
           </div>
         )}

@@ -17,7 +17,7 @@ const PrivacyPolicyPage: React.FC = () => {
               This Policy is issued in accordance with the UK General Data Protection Regulation (“UK GDPR”), the Data Protection Act 2018 (“DPA 2018”) and the Privacy and Electronic Communications Regulations 2003 (“PECR”). Our services are intended for residents of the United Kingdom only.
             </p>
             <p className="mt-2">
-              <span className="font-bold">Data Controller:</span> Immaculate Ltd is the data controller responsible for your personal data. ICO Registration No.: ZB932467.
+              <span className="font-bold">Data Controller:</span> ML Holdings is the data controller responsible for your personal data. FCA: 834008 | ICO: ZB963604
             </p>
           </section>
 
@@ -134,13 +134,16 @@ const PrivacyPolicyPage: React.FC = () => {
             <h2 className="text-xl font-semibold text-slate-900 mb-3">14. Contact Us</h2>
             <p>To exercise your rights, withdraw consent or ask any question about this Policy, please contact:</p>
             <p className="mt-2">
-              <span className="font-bold">Data Controller:</span> Immaculate Ltd
+              <span className="font-bold">Data Controller:</span> ML Holdings
             </p>
             <p>
               <span className="font-bold">Email:</span> <a href="mailto:info@autoclaimfix.com" className="text-brand-600 hover:underline">info@autoclaimfix.com</a>
             </p>
             <p>
-              <span className="font-bold">ICO Registration:</span> ZB932467
+              <span className="font-bold">FCA Number:</span> 834008
+            </p>
+            <p>
+              <span className="font-bold">ICO Registration:</span> ZB963604
             </p>
             <p>
               <span className="font-bold">Address:</span> United Kingdom
