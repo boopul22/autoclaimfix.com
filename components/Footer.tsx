@@ -50,7 +50,7 @@ const Footer: React.FC = () => {
             <span>|</span>
             <Link to="/about" className="hover:text-brand-400 transition-colors">Contact</Link>
           </div>
-          <p>&copy; 2025 autoclaimfix.com</p>
+          <p>&copy; 2026 autoclaimfix.com</p>
         </div>
       </div>
     </footer>
